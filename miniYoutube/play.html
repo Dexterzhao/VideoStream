@@ -115,14 +115,15 @@
 					<input type="checkbox" name="timed" id="timed" value="timed"> Timed<br>
 					
 					<!-- FIXME: See below -->
-					<div id="inputtime" style="display:none">
+					<div id="inputtime">
 						Timestamp: 
 						<input type="text" placeholder="Time" />
 					</div>
 					<!-- FIXME: This does not work. Does not show time input when checkbox is checked. -->
 					<script>
-					$('#timed').live('change', function(){
-						if ( $(this).is(':checked') ) {
+					$('#inputtime').hide();
+					$('#timed').click(function() {
+						if ($(this).is(':checked')) {
 							$('#inputtime').show();
 						} else {
 							$('#inputtime').hide();
