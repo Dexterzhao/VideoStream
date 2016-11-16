@@ -13,6 +13,22 @@
 <script type="text/javascript" src="http://cdn.staticfile.org/twitter-bootstrap/3.0.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="v3/jquery.htmlClean.js"></script>
 <script type="text/javascript" src="v3/scripts.min.js"></script>
+<script src="http://popcornjs.org/code/dist/popcorn-complete.min.js"></script>
+    <!-- PopcornJS example -->
+    <script>
+      // ensure the web page (DOM) has loaded
+      document.addEventListener("DOMContentLoaded", function () {
+         // Create a popcorn instance by calling Popcorn("#id-of-my-video")
+         var pop = Popcorn("#ourvideo");
+         // add a footnote at 2 seconds, and remove it at 6 seconds
+         pop.footnote({
+           start: 2,
+           end: 6,
+           text: "Pop!",
+           target: "footnotetest"
+         });
+      }, false);
+    </script>
 </head>
 <body>
 
@@ -53,7 +69,7 @@
 				<h3 class="text-info">Title of Video</h3>
 					<frame>
 						<html5>
-							<video height="400" controls>
+							<video height="400" id="ourvideo" controls>
 	 							<source src="./video/movie.ogg" type="video/ogg">
 	 							<source src="./video/movie.mp4" type="video/mp4">
 	 							<source src="./video/movie.webm" type="video/webm">
@@ -61,19 +77,69 @@
 									<embed src="./video/movie.swf">
 								</object>
 							</video>
+							
+							<!-- PopcornJS test output here -->
+							<div id="footnotetest"></div>
+
+							
+							<!-- <script>
+								(function(){
+							    var v = document.getElementsByTagName('video')[0]
+							    var t = document.getElementById('time');
+							    v.addEventListener('timeupdate',function(event){
+							    	t.innerHTML = parseInt(v.currentTime);
+							    },false);
+								})();
+							</script> -->
+
+							</html5>
 						</html5>
 					</frame>
 				</div>
 				<div class="col-md-4 column">
-					<p>There will be a div of the introduction of the vidoe</p>
+					<p>There will be a div of the introduction of the video.</p>
 				</div>
 			</div>
 			<div class="row clearfix">
 				<div class="col-md-8 column">
-					
+					<!-- LikeBtn.com BEGIN -->
+					<span class="likebtn-wrapper" data-theme="youtube" data-show_like_label="false"></span>
+					<script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script>
+					<!-- LikeBtn.com END -->
+				</div>	
+			</div>
+
+			<div class="row clearfix">
+				<div class="col-md-8 column">
 					<h3 class="text-info">Comments</h3>
-					<textarea class="col-md-12 column"></textarea><br>
-					<input type="button" value="submit">
+					<form>
+						<input type="checkbox" name="timed" id="timed" value="timed"> Timed<br>
+					
+						<!-- FIXME: See below -->
+						<div id="inputtime" style="display:none">
+							Timestamp: 
+							<input type="text" placeholder="Time" />
+						<div>
+
+						<!-- FIXME: This does not work. Does not show time input when checkbox is checked. -->
+						<script>
+						$('#timed').live('change', function(){
+							if ( $(this).is(':checked') ) {
+								$('#inputtime').show();
+							} else {
+								$('#inputtime').hide();
+							}
+						});
+						</script>
+
+						Comment:<br>
+						<textarea class="col-md-12 column" placeholder="Enter comment here"></textarea><br>
+						<input type="button" value="Submit">
+						<!-- CODEME: add database comm code -->
+					</form>
+					
+					<!-- CODEME: Display comments below form -->
+
 				</div>	
 			</div>
 		</div>
@@ -81,6 +147,7 @@
 </div>
 </body>
 
+<!-- =========== FOOTER OUTRO =========== -->
 <footer>
 <div class="container" style="color:gray">
 	<div class="row clearfix">
@@ -91,9 +158,9 @@
 				</div>
 				<div class="col-md-4 column">
 					<ul class="list-unstyled">
-						<strong>Technique we used</strong>
+						<strong>Techniques we used</strong>
 						<li>
-							JavaScrip
+							JavaScript
 						</li>
 						<li>
 							HTML
