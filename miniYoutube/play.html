@@ -114,12 +114,10 @@
 				<form>
 					<input type="checkbox" name="timed" id="timed" value="timed"> Timed<br>
 					
-					<!-- FIXME: See below -->
 					<div id="inputtime">
 						Timestamp: 
 						<input type="text" placeholder="Time" />
 					</div>
-					<!-- FIXME: This does not work. Does not show time input when checkbox is checked. -->
 					<script>
 					$('#inputtime').hide();
 					$('#timed').click(function() {
