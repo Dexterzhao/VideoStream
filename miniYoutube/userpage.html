@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8"> 
+  <meta charset="utf-8">
   <title>test</title>
 
-  <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">  
+  <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
   <script src="./lib/jquery.js"></script>
   <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
@@ -44,7 +44,7 @@ function getSession() {
 			}
 		}
 	}
-	
+
 	xmlhttp.open("POST","./lib/jsp/checkSession.jsp",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send();
@@ -62,10 +62,14 @@ function getProfile() {
 	}
 
 	xmlhttp.onreadystatechange=function() {
+    
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 			xmlDoc = xmlhttp.responseXML;
 			var phone = xmlDoc.getElementsByTagName("phone");
 			//var gender = xmlDoc.getElementsByTagName("gender");
+
+
+
 			var addr = xmlDoc.getElementsByTagName("addr");
 			var state = xmlDoc.getElementsByTagName("state");
 			var intro = xmlDoc.getElementsByTagName("intro");
@@ -76,7 +80,7 @@ function getProfile() {
 			document.getElementById("selfintro").innerHTML=intro[0].childNodes[0].nodeValue;
 		}
 	}
-	
+
 	xmlhttp.open("GET","./lib/jsp/getprofile.jsp",true);
 	//xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send();
@@ -97,6 +101,7 @@ function modifyprofile() {
 	}
 
 	xmlhttp.onreadystatechange=function() {
+
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 			var msg = xmlhttp.responseText;
 			if (msg != 0) {
@@ -109,7 +114,7 @@ function modifyprofile() {
 			}
 		}
 	}
-	
+
 	xmlhttp.open("POST","./lib/jsp/modifyprofile.jsp?t="+x1+"&a="+x2+"&s="+x3+"&intro="+x4,true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send();
@@ -146,11 +151,11 @@ $(document).ready(function(){
 						</div> <button type="submit" class="btn btn-default">Submit</button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
-						
+
 						<li id="ticket1">
 							 <a href="#" onclick="signout()">Sign out</a>
 						</li>
-						
+
 					</ul>
 				</div>
 			</nav>
@@ -248,10 +253,10 @@ $(document).ready(function(){
 							 <input type="file" id="upcover" name="Cover" multiple="multiple" />
 						</div>
 						<div class="checkbox">
-							 <label><input name="radiobox" type="radio" id="public" value="public"/> Public</label>    
+							 <label><input name="radiobox" type="radio" id="public" value="public"/> Public</label>
 							 <label><input name="radiobox" type="radio" id="private" value="private"/> Private</label>
 							 <label><input name="radiobox" type="radio" id="friendOnly" value="friendOnly"/> Friend only</label>
-						</div> 
+						</div>
 						<button type="submit" class="btn btn-default">Submit</button>
 					</form>
 				</div>
@@ -285,7 +290,7 @@ $(document).ready(function(){
 							 <label for="exampleInputTitle">telephone</label>
 							 <input type="text" class="form-control" id="phone" />
 						</div>
-						
+
 						<div class="form-group">
 							 <label for="exampleInputTitle">Address</label>
 							 <input type="text" class="form-control" id="address">
@@ -301,7 +306,7 @@ $(document).ready(function(){
 						<button type="submit" class="btn btn-default" onclick="modifyprofile()">Submit</button>
 					</form>
 				</div>
-			</div>	
+			</div>
 		</div>
 	</div>
 </div>
@@ -333,7 +338,7 @@ $(document).ready(function(){
 						<li>
 							...
 						</li>
-						
+
 					</ul>
 				</div>
 				<div class="col-md-4 column">

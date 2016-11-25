@@ -1,10 +1,10 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8"> 
+  <meta charset="utf-8">
   <title>VideoStream</title>
 
-  <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">  
+  <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
   <script src="./lib/jquery.js"></script>
   <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
@@ -14,11 +14,11 @@
 <script type="text/javascript" src="v3/jquery.htmlClean.js"></script>
 <script type="text/javascript" src="v3/scripts.min.js"></script>
 <script type="text/javascript" src="./lib/js/index.js"></script>
-
+<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
 <style type="text/css">
-	
+
 .navbar{
-	
+
 	box-shadow: -2px -2px 8px gray;
 	filter:alpha(opacity=95);
 	opacity:0.95;
@@ -68,8 +68,9 @@ footer .container{
 					</ul>
 					<form class="navbar-form navbar-left" role="search">
 						<div class="form-group">
-							<input type="text" class="form-control" />
-						</div> <button type="submit" class="btn btn-default">Search</button>
+							<input type="text" class="form-control" id="Query" />
+						</div>
+            <button type="button"  class="btn btn-default " onclick="getQuery()">Search</button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
 						<li id="ticket1">
@@ -160,32 +161,33 @@ footer .container{
 					</div>
 					<div class="row">
 						<h3 class="text-info">&nbsp RECOMMENDATION</h3>
-					    <div class="col-sm-6 col-md-3">
-					        <a href="#" class="thumbnail">
+            <div ng-app="" class="col-sm-6 col-md-3">
+                <a ng-show="true" href="#" class="thumbnail">
+                    <img src="./images/kittens.jpg"
+                         alt="通用的占位符缩略图">
+                </a>
+            </div>
+					    <div ng-app="" class="col-sm-6 col-md-3">
+					        <a ng-show="true" href="#" class="thumbnail ">
 					            <img src="./images/kittens.jpg"
 					                 alt="通用的占位符缩略图">
 					        </a>
 					    </div>
-					    <div class="col-sm-6 col-md-3">
-					        <a href="#" class="thumbnail">
+              <div ng-app="" class="col-sm-6 col-md-3">
+					        <a ng-show="false" href="#" class="thumbnail">
 					            <img src="./images/kittens.jpg"
 					                 alt="通用的占位符缩略图">
 					        </a>
 					    </div>
-					    <div class="col-sm-6 col-md-3">
-					        <a href="#" class="thumbnail">
+              <div ng-app="" class="col-sm-6 col-md-3">
+					        <a ng-show="false" href="#" class="thumbnail ">
 					            <img src="./images/kittens.jpg"
 					                 alt="通用的占位符缩略图">
 					        </a>
 					    </div>
-					    <div class="col-sm-6 col-md-3">
-					        <a href="#" class="thumbnail">
-					            <img src="./images/kittens.jpg"
-					                 alt="通用的占位符缩略图">
-					        </a>
-					    </div>
+
 					</div>
-				
+
 				</div>
 			</div>
 		</div>
@@ -220,7 +222,7 @@ footer .container{
 						<li>
 							...
 						</li>
-						
+
 					</ul>
 				</div>
 				<div class="col-md-4 column">
