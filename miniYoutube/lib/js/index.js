@@ -25,12 +25,16 @@ function checkSession() {
 				}
 			}
 		}
-		
+
 		xmlhttp.open("POST","./lib/jsp/checkSession.jsp",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send();
 }
 
+function getQuery(){
+	var qstr = document.getElementById("Query").value;
+	window.location.href="./search.html?query="+qstr;
+}
 
 
 function signout() {
@@ -49,7 +53,7 @@ function signout() {
 			if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 				var msg = xmlhttp.responseText;
 				if (msg == 1) {
-					
+
 					signinin.innerHTML="<a href=\"signin.html\">Sign in</a>";
 					signupup.innerHTML="<a href=\"signup.html\">Sign up</a>";
 				}
@@ -58,7 +62,7 @@ function signout() {
 				}
 			}
 		}
-		
+
 		xmlhttp.open("POST","./lib/jsp/signout.jsp",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send();
@@ -85,38 +89,38 @@ function signouta() {
 				}
 			}
 		}
-		
+
 		xmlhttp.open("POST","./lib/jsp/signout.jsp",true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send();
 }
 
-var code; 
-function createCode(){  
-	 code = "";   
+var code;
+function createCode(){
+	 code = "";
 	 var codeLength = 4;
-	 var checkCode = document.getElementById("code");   
-	 var random = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R',  
+	 var checkCode = document.getElementById("code");
+	 var random = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R',
 	 'S','T','U','V','W','X','Y','Z');
 	 for(var i = 0; i < codeLength; i++) {
 		var index = Math.floor(Math.random()*36);
 		code += random[index];
-	}  
+	}
 	checkCode.value = code;
 	var x = document.getElementById("codeNo");
 	x.value = code;
 }
-var code2; 
-function createCode2(){  
-	 code2 = "";   
-	 var codeLength = 4; 
-	 var checkCode = document.getElementById("code2");   
-	 var random = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R',  
+var code2;
+function createCode2(){
+	 code2 = "";
+	 var codeLength = 4;
+	 var checkCode = document.getElementById("code2");
+	 var random = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R',
 	 'S','T','U','V','W','X','Y','Z');
 	 for(var i = 0; i < codeLength; i++) {
-		var index = Math.floor(Math.random()*36); 
+		var index = Math.floor(Math.random()*36);
 		code2 += random[index];
-	}  
+	}
 	checkCode.value = code2;
 	var x = document.getElementById("codeNo2");
 	x.value = code2;
@@ -140,7 +144,7 @@ function loadCode2() {
 	}
 }
 
-function validate(){  
+function validate(){
 	if (load != 0) {
 		var inputCode = document.getElementById("check").value.toUpperCase(); //取得输入的验证码并转化为大写
 		var x = document.getElementById("tick_check");
@@ -150,10 +154,10 @@ function validate(){
 		else {
 			x.innerHTML = "<img src = \"./images/001_75.png\"/>";
 		}
-	}        
+	}
 }
 
-function validate2(){  
+function validate2(){
 	if (load2 != 0) {
 		var inputCode = document.getElementById("check2").value.toUpperCase(); //取得输入的验证码并转化为大写
 		var x = document.getElementById("tick_check2");
@@ -163,7 +167,7 @@ function validate2(){
 		else {
 			x.innerHTML = "<img src = \"./images/001_75.png\"/>";
 		}
-	}        
+	}
 }
 
 function samepasswd() {
@@ -191,7 +195,7 @@ function signin() {
 	var y = document.getElementById("passwd_ticket");
 	var z = document.getElementById("code_ticket");
 	var zy = document.getElementById("check_ticket");
-	
+
 	if (u.length < 1) {
 		x.innerHTML = "<span class=\"icon-remove\"></span>";
 		return;
@@ -240,12 +244,12 @@ function signin() {
 				}
 			}
 		}
-		
+
 		xmlhttp.open("POST","./lib/jsp/signin.jsp?user="+u+"&passwd="+p,true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send();
 	}
-	
+
 }
 
 
@@ -268,19 +272,19 @@ function userok() {
 		else {// code for IE6, IE5
 			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 		}
-		
+
 		xmlhttp.onreadystatechange=function() {
 			if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 				x.innerHTML=xmlhttp.responseText;
 
 			}
 		}
-		
+
 		xmlhttp.open("POST","./lib/jsp/checkuser.jsp?user="+u,true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send();
 	}
-	
+
 }
 
 
@@ -291,11 +295,11 @@ function signup() {
 	var p1 = document.getElementById("passwd").value;
 	var p2 = document.getElementById("passwd2").value;
 	var c = document.getElementById("check2").value;
-	
+
 	var x = document.getElementById("username_ticket");
 	var c = document.getElementById("check2");
 	var c = document.getElementById("check2");
-	
+
 	if (u.length < 4 || u.length > 20) {
 //		x.innerHTML = "<img src = \"./images/001_75.png\"/>";
 		return;
@@ -318,7 +322,7 @@ function signup() {
 		else {// code for IE6, IE5
 			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 		}
-		
+
 		xmlhttp.onreadystatechange=function() {
 			if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 				var msg = xmlhttp.responseText;
@@ -329,17 +333,17 @@ function signup() {
 				}
 				else {
 					alert("ok");
-					
+
 					window.location.href="./index.html";
 					return;
-				} 
+				}
 			}
 		}
-		
+
 		xmlhttp.open("POST","signup.jsp?user="+u+"&passwd="+p1+"&email="+e,true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send();
-	}	
+	}
 }
 
 function updatepwd() {
@@ -375,9 +379,8 @@ function updatepwd() {
 				}
 			}
 		}
-		
+
 		xmlhttp.open("POST","./lib/jsp/updatepwd.jsp?opwd="+opwd+"&passwd="+passwd,true);
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send();
 }
-
