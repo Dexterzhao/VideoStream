@@ -148,10 +148,9 @@ s.setAttribute('data-timestamp', +new Date());
 		xmlhttp.send();
 	}
 
-	function loadcomment() {
+	function LoadComments() {
 		var xmlDoc;
 		var xmlhttp;
-		//document.getElementById("views").innerHTML="232";
 		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
 			xmlhttp=new XMLHttpRequest();
 		}
@@ -161,21 +160,34 @@ s.setAttribute('data-timestamp', +new Date());
 
 		xmlhttp.onreadystatechange=function() {
 			if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-				xmlDoc = xmlhttp.responseText;
-				
-				
-				
-			}
+				xmlDoc = xmlhttp.responseXML;
+				var i;
+				var con = xmlDoc.getElementsByTagName("contents");
+				var nam = xmlDoc.getElementsByTagName("name");
+				var tim = xmlDoc.getElementsByTagName("time");
+				for(i=0;i<con.length;i++)
+				{
+					if(i==0)
+					{
+						document.getElementById("ShowCom").innerHTML = "<p class='text-info'>"+nam[i].childNodes[0].nodeValue+"&nbsp"+tim[i].childNodes[0].nodeValue+"</p>";
+						document.getElementById("ShowCom").innerHTML += "<p>"+con[i].childNodes[0].nodeValue+"</p>";
+					}
+					else {
+					document.getElementById("ShowCom").innerHTML += "<p class='text-info'>"+nam[i].childNodes[0].nodeValue+"&nbsp"+tim[i].childNodes[0].nodeValue+"</p>";
+					document.getElementById("ShowCom").innerHTML += "<p>"+con[i].childNodes[0].nodeValue+"</p>";
+					}
+				}
+				}
 		}
-		
-		xmlhttp.open("GET","./lib/jsp/loadComment.jsp?vid="+vid,true);
+		xmlhttp.open("GET","./lib/jsp/loadComment.jsp?vid="+vid,false);
+		//xmlhttp.setRequestHeader('Content-Type', 'text/xml');
 		xmlhttp.send();
 	}
 
 	$(document).ready(function(){
 		window.onload=checkSession();
 		window.onload=loadvideo();
-		window.onload=loadcomment();
+		window.onload=LoadComments();
 
 	});
 	
@@ -265,8 +277,7 @@ s.setAttribute('data-timestamp', +new Date());
 				<div class="col-md-8 column">
 				
 					<h3 class="text-info">Comments</h3>
-					<div id="disqus_thread"></div>
-					<!-- Input timestamp form -->
+					<div id="ShowCom"></div>
 					<form>
 						<input type="checkbox" id="timed" value="timed">Timed<br>
 						
